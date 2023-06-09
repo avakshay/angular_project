@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 206.189.134.14 --port 4000 --max-old-space-size=4096",
+    "start": "NODE_OPTIONS=--max-old-space-size=4096 ng serve --host 0.0.0.0 --port 4000",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
