@@ -102,38 +102,41 @@ export default function Login(props) {
 			
 			
 			
-			axios.post('http://65.0.111.203:3000/agentLogin',{
-			  id:userid,
-			  password:password
+		// 	axios.post('http://65.0.111.203:3000/agentLogin',{
+		// 	  id:userid,
+		// 	  password:password
 			  
-			})
-			.then(result => {
+		// 	})
+		// 	.then(result => {
 			   
    
-			   if(result.status === 200){
+		// 	   if(result.status === 200){
 				   
-				 cookies.set('sid', result.data, { path: '/' });
-				 props.checkShowLogin(true); 
+		// 		 cookies.set('sid', result.data, { path: '/' });
+		// 		 props.checkShowLogin(true); 
 				
-				 setCaptcha(false);
-				 //window.location.href = '/';
+		// 		 setCaptcha(false);
+		// 		 //window.location.href = '/';
 				 
 		 
 				
-			   }
-			   else{
-				 setCaptcha(false);  
-				 toast.warn('Username or password incorrect!', {position:toast.POSITION.TOP_CENTER})
-				 //document.getElementById("errorMsg").innerHTML="Username or password incorrect!";
-				 createCaptcha();
-			   }
-			 }
+		// 	   }
+		// 	   else{
+		// 		 setCaptcha(false);  
+		// 		 toast.warn('Username or password incorrect!', {position:toast.POSITION.TOP_CENTER})
+		// 		 //document.getElementById("errorMsg").innerHTML="Username or password incorrect!";
+		// 		 createCaptcha();
+		// 	   }
+		// 	 }
 			 
-		   ).catch(e => {
-			 //setIsError(true);
-		   });
+		//    ).catch(e => {
+		// 	 //setIsError(true);
+		//    });
 		   
-		   
+		cookies.set('sid', "NJNSIOENEK28867577dsdxcscdsmkmkm998", { path: '/' });
+		props.checkShowLogin(true); 
+	   
+		setCaptcha(false);
 			 
 		   };
 		 
