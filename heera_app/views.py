@@ -16,6 +16,11 @@ from django.views.decorators.csrf import csrf_exempt
 from .helperfun import updatesession, get_token, get_marktId, marketbook, exposure, bets_api, database_conn
 
 db = database_conn()
+# collection_names = db.list_collection_names()
+
+# for name in collection_names:
+#     print(name)
+
 access_key = 'AKIA3B6YE2EVL4Z5IKOJ'
 secret_access_key = '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'
 
@@ -76,7 +81,7 @@ def method_chk_middleware(get_response):
 # <!****************************************************************!>
 
 def futur_expo(user_id):
-    coll = db['users']
+    coll = db['Users']
     userbet = db['betrecords']
     admintrasaction = db['admintransactions']
 
@@ -236,7 +241,7 @@ def futur_expo(user_id):
 
 @csrf_exempt
 def login(req):
-    coll = db['users']
+    coll = db['Users']
     print(coll)
     data = req.body.decode('utf-8')
     if data != '':
@@ -268,7 +273,7 @@ def login(req):
 
 # Whole user Details
 def userdetails(req):
-    coll = db['users']
+    coll = db['Users']
     user_data = list(coll.find({"_id": ObjectId(req.user['sub'])}, {'_id': 0, "hash": 0}))
     # print(user_data)
     if len(user_data) > 0:
@@ -282,7 +287,7 @@ def userdetails(req):
 
 
 def userCurrentBalanceWithExposure(req):
-    coll = db['users']
+    coll = db['Users']
     #    userbet = db['betrecords']
     userbet = db['userbets']
     admintrasaction = db['admintransactions']
@@ -644,7 +649,7 @@ def user_expo(req):
         print("987")
         userbet = db['userbets']
         #        userbet = db['betrecords']
-        user = db['users']
+        user = db['Users']
         print(list(user.find({'_id': ObjectId("614845c7bbdd9df6d13c1798")})))
         admintrasaction = db['admintransactions']
         body_data = req.body.decode('utf-8')
@@ -844,7 +849,7 @@ def user_expo(req):
 
 
 def distribution(req):
-    user = db['users']
+    user = db['Users']
     # parent_id = "5ffd944b3dcc5a3098f5dd88"
     parent_id = req.user['sub']
     parent = user.find_one({"_id": ObjectId(parent_id), "userType": 1, "parentid": ""}, {'_id': 1})
@@ -883,12 +888,14 @@ class UserExpo(APIView):
     def post(self, request):
         try:
             userbet = db['userbets']
-            user = db['users']
+            user = db['Users']
             admintrasaction = db['admintransactions']
             body_data = request.data
             if body_data != "":
                 body_user_id = body_data['user_id']
+                print("!232")
                 user_data = list(user.find({'_id': ObjectId(body_user_id)}))
+                print("!232",user_data)
                 pl = 0
                 leader = list(admintrasaction.find({'user_id': ObjectId(body_user_id)}))
                 for trans_data in leader:
@@ -1076,3 +1083,8 @@ class UserExpo(APIView):
             response = JsonResponse({"stat": False, "user_expo": 0,"error":str(e)}, safe=False)
 
         return response   
+    
+
+
+# data = list(db['Users'])
+# print(data)

@@ -5,14 +5,20 @@ from bson.objectid import ObjectId
 
 import pymongo
 
-def database_conn():
-    client = pymongo.MongoClient('mongodb+srv://nikk2kb2:8XSPA27UHfDwpAK@cluster0.xpgu2ub.mongodb.net/test')
-    return client['test']
 
+
+
+
+def database_conn():
+    
+    # mongodb+srv://Diamond:<password>@cluster0.hvjll3u.mongodb.net/?retryWrites=true&w=majority
+    client = pymongo.MongoClient("mongodb+srv://Diamond:root@cluster0.hvjll3u.mongodb.net/?retryWrites=true&w=majority")
+    return client['Diamond']
+# TIInmlOqGZhRMXdK
 db = database_conn()
 
 def futur_expo(user_id):
-    coll = db['users']
+    coll = db['Users']
     userbet = db['betrecords']
     admintrasaction = db['admintransactions']
 
@@ -149,7 +155,7 @@ def futur_expo(user_id):
 
 
 def updatesession(user, sessionid):
-    coll = db['users']
+    coll = db['Users']
     coll.update_one({'username': user}, {"$inc": {'session_value': 1}, '$set': {'session_id': sessionid}})
     return
 
@@ -223,7 +229,7 @@ def marketbook(bet_token, match_id, marketId, event_type_id):
 def exposure(fun_user_id):
     try:
         userbet = db['userbets']
-        user = db['users']
+        user = db['Users']
         admintrasaction = db['admintransactions']
         body_user_id = fun_user_id
         user_data = list(user.find({'_id': ObjectId(body_user_id)}))

@@ -98,16 +98,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'heera.wsgi.application'
 
-DATABASES = {
-   'default': {
-       'ENGINE': 'djongo',
-       'NAME': 'Diamond',
-       'CLIENT': {
-          'host': 'mongodb+srv://nikk2kb2:8XSPA27UHfDwpAK@cluster0.xpgu2ub.mongodb.net/test',
-        #   'host': 'mongodb+srv://diamond:heerexchnik@diamond.4dzxi.mongodb.net/Diamond?retryWrites=true&w=majority',
-       }
-   }
-}
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'djongo',
+#        'NAME': 'test',
+#        'CLIENT': {
+#           'host': 'mongodb+srv://diamond:nikhilk2kb2@cluster0.hvjll3u.mongodb.net/test',
+#         #   'host': 'mongodb+srv://nikk2kb2:8XSPA27UHfDwpAK@cluster0.xpgu2ub.mongodb.net/test',
+#         #   'host': 'mongodb+srv://diamond:heerexchnik@diamond.4dzxi.mongodb.net/Diamond?retryWrites=true&w=majority',
+#        }
+#    }
+# }
 
 
 # Database
